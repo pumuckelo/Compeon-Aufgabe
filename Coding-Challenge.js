@@ -7,7 +7,7 @@
 
 // You need to fix this function, currently it will crash with > 160 char messages.
 function sendSmsMessage(text, to, from) {
-  // If the message has less or equals 160 characters, just send the message
+  // If the message has less or equals 160 characters, simply send the message with the deliverMessageViaCarrier function
   if (text <= 160) {
     deliverMessageViaCarrier(text, to, from);
     return;
@@ -15,13 +15,13 @@ function sendSmsMessage(text, to, from) {
 
   //If the message is bigger than 160 characters, we want to split the message and add a suffix to each message,
   //so that every message is max. 160 characters(including the suffix)
-  //Then we send the messages with "deliverMessageViaCarrier" function
+  //Then we send the messages with the "deliverMessageViaCarrier" function
   else {
     const textArray = text.split("");
     const splittedText = [];
     let messages = [];
     //split the message into multiple messages
-    while (textArray.length > 1) {
+    while (textArray.length > 0) {
       let message = textArray.slice(0, 146).join("");
       console.log(`Länge Nachricht: ${message.length}`);
       textArray.splice(0, 146);
