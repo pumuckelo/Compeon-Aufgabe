@@ -22,10 +22,11 @@ function sendSmsMessage(text, to, from) {
     let messages = [];
     //split the message into multiple messages
     while (textArray.length > 0) {
-      let message = textArray.slice(0, 146).join("");
+      //Remove 146 letters from the array and assign them to the message
+      let message = textArray.splice(0, 146).join("");
       console.log(`Länge Nachricht: ${message.length}`);
-      textArray.splice(0, 146);
       console.log(textArray.length);
+      //push the message to array
       splittedText.push(message);
     }
 
@@ -34,7 +35,6 @@ function sendSmsMessage(text, to, from) {
       message = message + ` - Part ${i + 1} of ${splittedText.length}`;
       console.log(`Länge Nachricht inkl. Suffix: ${message.length}`);
       return message;
-      // return message + ` - Part ${i + 1} of ${splittedText.length}`
     });
     //Ohne den oberen Kommentar "Länge Nachricht.." hinzuzufügen würde ich folgenden Code verwenden
     // messages = splittedText.map((message, i) => message + ` - Part ${i + 1} of ${splittedText.length}`
